@@ -13,6 +13,18 @@ public class Motocycle extends Vehicle{
 
     private String ccMotor;
     private String motor;
+
+    public Motocycle() {
+        
+    }
+
+    public Motocycle(String ccMotor, String motor, String licensePlate, String model, String brand) {
+        super(licensePlate, model, brand);
+        this.ccMotor = ccMotor;
+        this.motor = motor;
+    }
+    
+    
     
     @Override
     public String getInfo() {
