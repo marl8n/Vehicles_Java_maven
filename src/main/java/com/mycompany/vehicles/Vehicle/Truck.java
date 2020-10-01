@@ -14,6 +14,11 @@ public class Truck extends Vehicle{
     private String typeOfGasoline;
     private String motor;
     private Double tons;
+    
+    public Truck ()
+    {
+        
+    }
 
     public Truck(String typeOfGasoline, String motor, Double tons, String licensePlate, String model, String brand) {
         super(licensePlate, model, brand);

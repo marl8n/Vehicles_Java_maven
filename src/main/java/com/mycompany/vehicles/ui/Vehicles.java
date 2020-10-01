@@ -5,9 +5,11 @@
  */
 package com.mycompany.vehicles.ui;
 
+import com.mycompany.vehicles.Vehicle.Autobus;
 import com.mycompany.vehicles.Vehicle.Motocycle;
 import com.mycompany.vehicles.Vehicle.PickUp;
 import com.mycompany.vehicles.Vehicle.Sedan;
+import com.mycompany.vehicles.Vehicle.Truck;
 import com.mycompany.vehicles.Vehicle.Vehicle;
 import java.util.LinkedList;
 import javax.swing.ButtonGroup;
@@ -29,10 +31,9 @@ public class Vehicles extends javax.swing.JFrame {
      * Creates new form Vehicles
      */
     public Vehicles() {
-        btnGroup.add(radioButtonAdd);
-        btnGroup.add(radioButtonEdit);
-        btnGroup.add(radioButtonSearch);
         initComponents();
+        btnGroup.add(radioButtonAdd);
+        btnGroup.add(radioButtonSearch);
         
     }
 
@@ -46,7 +47,6 @@ public class Vehicles extends javax.swing.JFrame {
     private void initComponents() {
 
         radioButtonAdd = new javax.swing.JRadioButton();
-        radioButtonEdit = new javax.swing.JRadioButton();
         radioButtonSearch = new javax.swing.JRadioButton();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
@@ -71,10 +71,23 @@ public class Vehicles extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         radioButtonAdd.setText("Agregar");
-
-        radioButtonEdit.setText("Editar");
+        radioButtonAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                radioButtonAddMouseClicked(evt);
+            }
+        });
 
         radioButtonSearch.setText("Buscar");
+        radioButtonSearch.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                radioButtonSearchMouseDragged(evt);
+            }
+        });
+        radioButtonSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                radioButtonSearchMouseClicked(evt);
+            }
+        });
 
         jTextField1.setEnabled(false);
 
@@ -137,9 +150,7 @@ public class Vehicles extends javax.swing.JFrame {
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(radioButtonAdd)
-                        .addGap(18, 18, 18)
-                        .addComponent(radioButtonEdit)
-                        .addGap(18, 18, 18)
+                        .addGap(93, 93, 93)
                         .addComponent(radioButtonSearch)))
                 .addGap(123, 123, 123))
             .addGroup(layout.createSequentialGroup()
@@ -174,7 +185,6 @@ public class Vehicles extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(radioButtonAdd)
-                    .addComponent(radioButtonEdit)
                     .addComponent(radioButtonSearch))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -221,26 +231,7 @@ public class Vehicles extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
-        if (jComboBox1.getSelectedItem().equals("Sedan"))
-        {
-            setLabelsCar();
-        }
-        else if (jComboBox1.getSelectedItem().equals("Pickup"))
-        {
-            setLabelsCar();
-        }
-        else if (jComboBox1.getSelectedItem().equals("Motocicleta"))
-        {
-            setLabelsMotocycle();
-        }
-        else if (jComboBox1.getSelectedItem().equals("Camión"))
-        {
-            setLabelsTruck();
-        }
-        else if (jComboBox1.getSelectedItem().equals("Camioneta"))
-        {
-            setLabelsAutobus();
-        }
+        actualizeFields();
     }//GEN-LAST:event_jComboBox1MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -248,9 +239,21 @@ public class Vehicles extends javax.swing.JFrame {
             addVehicle();
         else if(jButton1.getText().equals("Buscar"))
             searchByLicensePlate();
-        else if(jButton1.getText().equals("Editar"))
-            editVehicle();
+        
+        setTextFieldsUnabled();
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void radioButtonAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioButtonAddMouseClicked
+        actualizeFields();
+    }//GEN-LAST:event_radioButtonAddMouseClicked
+
+    private void radioButtonSearchMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioButtonSearchMouseDragged
+        actualizeFields();
+    }//GEN-LAST:event_radioButtonSearchMouseDragged
+
+    private void radioButtonSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioButtonSearchMouseClicked
+        actualizeFields();
+    }//GEN-LAST:event_radioButtonSearchMouseClicked
 
     private void setLabelsCar(){
         jLabel1.setText("Placa");
@@ -329,6 +332,31 @@ public class Vehicles extends javax.swing.JFrame {
         jTextField8.setEnabled(false);
     }
     
+    private void setSearchFields(){
+        
+        
+        jLabel1.setText("Buscar");
+        jLabel2.setText("");
+        jLabel3.setText("");
+        jLabel4.setText("");
+        jLabel5.setText("");
+        jLabel6.setText("");
+        jLabel7.setText("");
+        jLabel8.setText("");
+        
+        jTextField1.setEnabled(true);
+        jTextField2.setEnabled(false);
+        jTextField3.setEnabled(false);
+        jTextField4.setEnabled(false);
+        jTextField4.setEnabled(false);
+        jTextField5.setEnabled(false);
+        jTextField6.setEnabled(false);
+        jTextField7.setEnabled(false);
+        jTextField8.setEnabled(false);
+        
+        jButton1.setText("Buscar");
+    }
+    
     
     
     private void setTextFieldsUnabled(){
@@ -359,23 +387,8 @@ public class Vehicles extends javax.swing.JFrame {
         jTextField6.setEnabled(false);
         jTextField7.setEnabled(false);
         jTextField8.setEnabled(false);
-    }
-    
-    private void setLabelsByRadioButton(){
-        if (radioButtonAdd.isSelected())
-        {
-            jComboBox1.setEnabled(true);
-        }
-        else if (radioButtonEdit.isSelected())
-        {
-            jComboBox1.setEnabled(false);
-            setTextFieldsUnabled();
-        }
-        else if (radioButtonSearch.isSelected())
-        {
-            jComboBox1.setEnabled(false);
-            setTextFieldsUnabled();
-        }
+        
+        jButton1.setText("Agregar");
     }
     
     private void searchByLicensePlate(){
@@ -420,18 +433,23 @@ public class Vehicles extends javax.swing.JFrame {
         {
             addAutobus();
         }
+        
+        c++;
+        
+        setTextFieldsUnabled();
     }
     
     private void addSedan(){
+        //Integer passengersNumber, Integer numberOfDoors, String motor, String typeOfGasoline, Integer kilometers, String licensePlate, String model, String brand
         vehicles.add(new Sedan(
-                Integer.valueOf(jLabel7.getText()),
-                Integer.valueOf(jLabel6.getText()),
-                jLabel4.getText(),
-                jLabel5.getText(),
-                Integer.valueOf(jLabel8.getText()),
-                jLabel1.getText(),
-                jLabel2.getText(),
-                jLabel3.getText()
+                Integer.parseInt(jTextField7.getText()),
+                Integer.parseInt(jTextField6.getText()),
+                jTextField4.getText(),
+                jTextField5.getText(),
+                Integer.parseInt(jTextField8.getText()),
+                jTextField1.getText(),
+                jTextField2.getText(),
+                jTextField3.getText()
                 
         ));
         
@@ -440,14 +458,14 @@ public class Vehicles extends javax.swing.JFrame {
     private void addPickup()
     {
         vehicles.add(new PickUp(
-                Integer.valueOf(jLabel7.getText()),
-                Integer.valueOf(jLabel6.getText()),
-                jLabel4.getText(),
-                jLabel5.getText(),
-                Integer.valueOf(jLabel8.getText()),
-                jLabel1.getText(),
-                jLabel2.getText(),
-                jLabel3.getText()
+                Integer.parseInt(jTextField7.getText()),
+                Integer.parseInt(jTextField6.getText()),
+                jTextField4.getText(),
+                jTextField5.getText(),
+                Integer.parseInt(jTextField8.getText()),
+                jTextField1.getText(),
+                jTextField2.getText(),
+                jTextField3.getText()
                 
         ));
         
@@ -466,24 +484,59 @@ public class Vehicles extends javax.swing.JFrame {
         
     }
     
-    private void editVehicle(){
-        if (!jTextField1.getText().isEmpty())
+    private void addTruck(){
+        vehicles.add(new Truck(
+                jTextField5.getText(),
+                jTextField4.getText(),
+                Double.parseDouble(jTextField6.getText()),
+                jTextField1.getText(),
+                jTextField2.getText(),
+                jTextField3.getText()
+        ));
+        //String typeOfGasoline, String motor, Double tons, String licensePlate, String model, String brand
+        
+        setTextFieldsUnabled();
+    }
+    
+    private void addAutobus(){
+        //String typeOfGasoline, String motor, String numberOfPassengers, String licensePlate, String model, String brand
+        vehicles.add(new Autobus(
+                jTextField5.getText(),
+                jTextField4.getText(),
+                jTextField6.getText(),
+                jTextField1.getText(),
+                jTextField2.getText(),
+                jTextField3.getText()
+        ));
+        setTextFieldsUnabled();
+    }
+    
+    private void actualizeFields(){
+        if(radioButtonAdd.isSelected())
         {
-            Integer idx = -1;
-            String buffer = jTextField1.getText();
-            for ( int i = 0; i < c; i++ )
+            if (jComboBox1.getSelectedItem().equals("Sedan"))
             {
-                if (vehicles.get(i).getLicensePlate().equals(buffer)){
-                    idx = i;
-                    break;
-                }
+                setLabelsCar();
             }
-            if (idx >= 0)
+            else if (jComboBox1.getSelectedItem().equals("Pickup"))
             {
-                if (vehicles.get(idx).getClass().is){
-                
+                setLabelsCar();
             }
+            else if (jComboBox1.getSelectedItem().equals("Motocicleta"))
+            {
+                setLabelsMotocycle();
             }
+            else if (jComboBox1.getSelectedItem().equals("Camión"))
+            {
+                setLabelsTruck();
+            }
+            else if (jComboBox1.getSelectedItem().equals("Camioneta"))
+            {
+                setLabelsAutobus();
+            }
+        }
+        else if(radioButtonSearch.isSelected()){
+            setSearchFields();            
         }
     }
     
@@ -545,7 +598,6 @@ public class Vehicles extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JRadioButton radioButtonAdd;
-    private javax.swing.JRadioButton radioButtonEdit;
     private javax.swing.JRadioButton radioButtonSearch;
     // End of variables declaration//GEN-END:variables
 }

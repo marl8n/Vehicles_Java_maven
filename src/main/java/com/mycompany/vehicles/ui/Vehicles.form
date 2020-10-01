@@ -33,9 +33,7 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="radioButtonAdd" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="radioButtonEdit" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
                       <Component id="radioButtonSearch" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -79,7 +77,6 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="radioButtonAdd" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="radioButtonEdit" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="radioButtonSearch" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -139,16 +136,18 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Agregar"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="radioButtonEdit">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Editar"/>
-      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="radioButtonAddMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="radioButtonSearch">
       <Properties>
         <Property name="text" type="java.lang.String" value="Buscar"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="radioButtonSearchMouseDragged"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="radioButtonSearchMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField1">
       <Properties>

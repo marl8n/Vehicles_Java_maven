@@ -14,6 +14,10 @@ public class Autobus extends Vehicle{
     private String typeOfGasoline;
     private String motor;
     private String numberOfPassengers;
+    
+    public Autobus(){
+        
+    }
 
     public Autobus(String typeOfGasoline, String motor, String numberOfPassengers, String licensePlate, String model, String brand) {
         super(licensePlate, model, brand);
